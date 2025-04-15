@@ -52,10 +52,9 @@ def fetch_dune_data(query_id):
 
 # --- Streamlit App Layout ---
 st.set_page_config(layout="wide") # Use wider layout for tables
-st.title("Stablecoin Market Cap Data from Dune Analytics")
+st.title("Stablecoin Dashboard")
 st.markdown(f"""
-This app displays data fetched directly from Dune Analytics using a specific query.
-**Query ID:** `{DUNE_QUERY_ID}` (Make sure this is the ID of *your* saved query in Dune).
+Stablecoin Dashboard - Graphs to be added & data updated periodically.
 Data is cached for 1 hour.
 """)
 

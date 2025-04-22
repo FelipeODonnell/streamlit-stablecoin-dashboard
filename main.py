@@ -217,7 +217,6 @@ if choice == "Overview":
 
         * **Stablecoin Yields** - Table showing the yields offered by different stablecoin projects.
         * **Stablecoin Yield Analytics** - Analytics dashboard on stablecoin market.
-        *(Additional sections like Liquidity/Perps can be added here)*
 
         **Link to external stablecoin dashboards:**
 

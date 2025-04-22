@@ -17,9 +17,22 @@ deactivate
 To run
 streamlit run main.py
 
-Types of learning models to try
-Multi-layer perceptron (MLP)
-Convolutional neural network (CNN) 
-Recurrent neural network (RNN)
-Long short-term memory (LSTM)
+
 '''
+
+
+GIT CONNECTIONS:
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/FelipeODonnell/streamlit-stablecoin-dashboard.git
+git push -u origin main
+
+Virtual environments:
+python3 -m venv .venv
+source .venv/bin/activate
+deactivate
+
+pip install -r requirements.txt
+pip freeze > requirements.txt

@@ -1,4 +1,4 @@
-# Import necessary libraries
+
 import streamlit as st
 import pandas as pd
 import requests
@@ -6,15 +6,15 @@ import time
 import plotly.express as px
 import plotly.graph_objects as go
 
-# --- Page Configuration ---
+
 st.set_page_config(layout="wide")
 
-# --- DeFiLlama Configuration ---
+
 DEFILLAMA_YIELDS_API_URL = "https://yields.llama.fi/pools"
 DEFILLAMA_STABLECOINS_API_URL = "https://stablecoins.llama.fi/stablecoins"
 DEFAULT_MIN_TVL_USD = 10_000_000
 
-# --- Target Yield-Bearing Stable Asset Symbols ---
+
 TARGET_YIELD_ASSET_SYMBOLS = [
     'susdf', 'sgyd', 'arusd', 'yusd', 'ivlusd', 'sdola', 'wusdn', 'avusd',
     'syrupusdc', 'srusd', 'usds', 'stusr', 'crt', 'bold', 'stusd', 'susda',
@@ -24,7 +24,7 @@ TARGET_YIELD_ASSET_SYMBOLS = [
 ]
 TARGET_YIELD_ASSETS_LOWER = list(set([a.lower() for a in TARGET_YIELD_ASSET_SYMBOLS]))
 
-# --- Helper Functions ---
+
 
 def format_tvl(tvl):
     if pd.isna(tvl) or not isinstance(tvl, (int, float)): return "N/A"
@@ -40,7 +40,7 @@ def format_apy(apy):
 def format_metadata(value):
     return value if pd.notna(value) else "N/A"
 
-# --- Data Fetching Functions ---
+
 
 @st.cache_data(ttl=1800)
 def get_stablecoin_metadata(retries=3, delay=5):
@@ -196,10 +196,10 @@ def get_analytics_data(min_tvl, target_yield_assets_lower, stablecoin_metadata_d
             else: st.error(f"Analytics: Failed to fetch Yield Pool data after {retries} attempts.")
     return pd.DataFrame(columns=['error'])
 
-# --- Main App Structure ---
+
 
 with st.sidebar:
-    # Consider adding error handling if file not found, or use absolute path/package resources
+
     try:
         st.image("izun_partners_logo.jpeg")
     except FileNotFoundError:

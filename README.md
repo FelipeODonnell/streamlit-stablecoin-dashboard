@@ -1,4 +1,7 @@
-'''
+
+Temporary readme with command functions:
+
+
 ****
 Create a virtual environment
 
@@ -18,7 +21,7 @@ To run
 streamlit run main.py
 
 
-'''
+
 
 
 GIT CONNECTIONS:

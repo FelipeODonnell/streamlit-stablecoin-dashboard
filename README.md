@@ -6,10 +6,10 @@ Temporary readme with command functions:
 Create a virtual environment
 
 Used to create env:
-python3 -m venv DLpricer
+python3 -m venv venv
 
 Activate:
-source DLpricer/bin/activate
+source venv/bin/activate
 
 Deactive:
 deactivate

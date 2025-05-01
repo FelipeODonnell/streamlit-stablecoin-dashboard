@@ -1,0 +1,4 @@
+# This file disables the default multi-page behavior
+# so we can use our own navigation system in main.py
+[global]
+disableMultiPage = true

@@ -1,13 +1,15 @@
 """
 Overview page of the dashboard.
 """
+
 import streamlit as st
 
 
 def show_overview():
     """Display the overview page with information about different sections."""
-    st.title('Izun - Dashboard')
-    st.markdown("""
+    st.title("Izun - Dashboard")
+    st.markdown(
+        """
         * **Stablecoin Yields**: Table of yield-bearing stablecoins.
         * **Stablecoin Analytics**: Analytics from the data in the 'Stablecoin Yields' section.
         * **Pool Yields**: Table showing yields for all asset pools on DefiLlama.
@@ -22,4 +24,5 @@ def show_overview():
         * Defi Llama: [https://defillama.com/stablecoins](https://defillama.com/stablecoins)
         * RWA.xyz: [https://app.rwa.xyz/stablecoins](https://app.rwa.xyz/stablecoins)
         * IntoTheBlock: [https://app.intotheblock.com/perspectives/stablecoins](https://app.intotheblock.com/perspectives/stablecoins)
-    """)
+    """
+    )

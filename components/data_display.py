@@ -1,6 +1,7 @@
 """
 Reusable data display components for the Stablecoin Dashboard.
 """
+
 # Standard library imports
 from typing import Any, Callable, Dict, List, Optional, Union
 
@@ -13,7 +14,7 @@ import streamlit as st
 from utils.style_guide import (
     DEFAULT_COLUMN_CONFIGS,
     get_dataframe_style_dict,
-    get_default_plot_layout
+    get_default_plot_layout,
 )
 
 
@@ -23,11 +24,11 @@ def display_dataframe(
     use_container_width: bool = True,
     hide_index: bool = True,
     height: Optional[int] = None,
-    width: Optional[int] = None
+    width: Optional[int] = None,
 ) -> None:
     """
     Display a DataFrame with consistent styling.
-    
+
     Args:
         df: DataFrame to display
         column_config: Column configuration for the DataFrame
@@ -38,7 +39,7 @@ def display_dataframe(
     """
     # Get default styling
     style_dict = get_dataframe_style_dict()
-    
+
     # Override with provided parameters
     if not use_container_width:
         style_dict["use_container_width"] = False
@@ -48,34 +49,31 @@ def display_dataframe(
         style_dict["height"] = height
     if width:
         style_dict["width"] = width
-    
+
     # Get column configuration
     if column_config is None:
         # Use default column configs for columns that exist in the DataFrame
         column_config = {
             col: DEFAULT_COLUMN_CONFIGS.get(col, st.column_config.TextColumn(col))
-            for col in df.columns if col in DEFAULT_COLUMN_CONFIGS
+            for col in df.columns
+            if col in DEFAULT_COLUMN_CONFIGS
         }
-    
+
     # Display the DataFrame
     if df.empty:
         st.warning("No data available to display.")
     else:
-        st.dataframe(
-            df,
-            column_config=column_config,
-            **style_dict
-        )
+        st.dataframe(df, column_config=column_config, **style_dict)
 
 
 def display_metric_cards(
     metrics: Dict[str, Union[float, int, str]],
     columns: int = 3,
-    format_func: Optional[Dict[str, Callable]] = None
+    format_func: Optional[Dict[str, Callable]] = None,
 ) -> None:
     """
     Display multiple metrics in card format.
-    
+
     Args:
         metrics: Dictionary of metric names and values
         columns: Number of columns to display
@@ -83,18 +81,18 @@ def display_metric_cards(
     """
     if not metrics:
         return
-    
+
     cols = st.columns(columns)
-    
+
     for i, (label, value) in enumerate(metrics.items()):
         col_idx = i % columns
-        
+
         # Apply formatting function if provided
         if format_func and label in format_func:
             formatted_value = format_func[label](value)
         else:
             formatted_value = value
-            
+
         cols[col_idx].metric(label=label, value=formatted_value)
 
 
@@ -105,11 +103,11 @@ def display_plotly_chart(
     x_axis_title: Optional[str] = None,
     y_axis_title: Optional[str] = None,
     height: Optional[int] = None,
-    show_legend: bool = True
+    show_legend: bool = True,
 ) -> None:
     """
     Display a Plotly chart with consistent styling.
-    
+
     Args:
         fig: Plotly figure to display
         use_container_width: Whether to use the full container width
@@ -125,24 +123,22 @@ def display_plotly_chart(
         x_axis_title=x_axis_title,
         y_axis_title=y_axis_title,
         show_legend=show_legend,
-        height=height
+        height=height,
     )
-    
+
     # Update the figure layout
     fig.update_layout(**layout)
-    
+
     # Display the chart
     st.plotly_chart(fig, use_container_width=use_container_width)
 
 
 def display_data_summary(
-    df: pd.DataFrame,
-    title: str = "Data Summary",
-    include_stats: bool = True
+    df: pd.DataFrame, title: str = "Data Summary", include_stats: bool = True
 ) -> None:
     """
     Display a summary of the DataFrame.
-    
+
     Args:
         df: DataFrame to summarize
         title: Title for the summary
@@ -151,22 +147,22 @@ def display_data_summary(
     if df.empty:
         st.warning("No data available for summary.")
         return
-    
+
     st.subheader(title)
-    
+
     # Create summary metrics
     col1, col2, col3 = st.columns(3)
     col1.metric("Total Rows", len(df))
     col2.metric("Total Columns", len(df.columns))
-    
+
     # If specific columns exist, show their stats
-    numeric_cols = df.select_dtypes(include=['int', 'float']).columns
-    
-    if 'TVL_USD' in numeric_cols:
+    numeric_cols = df.select_dtypes(include=["int", "float"]).columns
+
+    if "TVL_USD" in numeric_cols:
         col3.metric("Total TVL", f"${df['TVL_USD'].sum():,.2f}")
-    elif 'TVL_Value' in numeric_cols:
+    elif "TVL_Value" in numeric_cols:
         col3.metric("Total TVL", f"${df['TVL_Value'].sum():,.2f}")
-    
+
     # Include descriptive statistics if requested
     if include_stats and len(numeric_cols) > 0:
         st.subheader("Descriptive Statistics")
@@ -174,13 +170,10 @@ def display_data_summary(
         display_dataframe(stats_df, hide_index=False)
 
 
-def display_info_alert(
-    message: str,
-    alert_type: str = "info"
-) -> None:
+def display_info_alert(message: str, alert_type: str = "info") -> None:
     """
     Display an alert message with consistent styling.
-    
+
     Args:
         message: Message to display
         alert_type: Type of alert ('info', 'warning', 'error', 'success')
@@ -202,11 +195,11 @@ def display_data_download(
     filename: str = "data.csv",
     label: str = "Download Data",
     help_text: str = "Download the data as a CSV file",
-    mime: str = "text/csv"
+    mime: str = "text/csv",
 ) -> None:
     """
     Create a download button for DataFrame.
-    
+
     Args:
         df: DataFrame to download
         filename: Name of the file to download
@@ -217,27 +210,21 @@ def display_data_download(
     if df.empty:
         st.warning("No data available to download.")
         return
-    
+
     # Convert DataFrame to CSV
     csv = df.to_csv(index=False)
-    
+
     # Create download button
-    st.download_button(
-        label=label,
-        data=csv,
-        file_name=filename,
-        mime=mime,
-        help=help_text
-    )
+    st.download_button(label=label, data=csv, file_name=filename, mime=mime, help=help_text)
 
 
 def create_tabs(tab_names: List[str]) -> List[st.tab]:
     """
     Create a set of tabs.
-    
+
     Args:
         tab_names: List of tab names
-        
+
     Returns:
         List of tab objects
     """

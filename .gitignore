@@ -1,0 +1,22 @@
+.venv/
+venv/
+*/.venv/
+*/venv/
+env/
+*/env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Streamlit Secrets
+.streamlit/secrets.toml
+
+
+# Pending Folder
+pending/
+
+# IDE / OS Files
+.idea/
+.vscode/
+*.DS_Store

@@ -255,6 +255,14 @@ MANUAL_STABLECOIN_DATA: Dict[str, Dict[str, str]] = {
         "Description": "T-bills",
         "StakedProportion": "N/A",
     },
+        "ousg": {
+        "Project": "@OndoFinance",
+        "Ticker": "OUSG",
+        "Yield": "4.07%",
+        "TVL": "$497.85M",
+        "Description": "T-bills",
+        "StakedProportion": "N/A",
+    },
     "usd3": {
         "Project": "@reserveprotocol",
         "Ticker": "USD3",
@@ -290,8 +298,8 @@ MANUAL_STABLECOIN_DATA: Dict[str, Dict[str, str]] = {
     "susde": {
         "Project": "@ethena_labs",
         "Ticker": "SUSDE",
-        "Yield": "4.7%",
-        "TVL": "$4.67B",
+        "Yield": "4.4%",
+        "TVL": "$4.4B",
         "Description": "perps funding & staked eth",
         "StakedProportion": "43.20%",
     },

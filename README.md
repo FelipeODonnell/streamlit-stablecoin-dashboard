@@ -34,6 +34,7 @@ uv pip install -e ".[dev]"
 1. Run the application:
 ```bash
 streamlit run main.py
+python -m streamlit run main.py
 ```
 
 2. Navigate to the URL displayed in your terminal (typically http://localhost:8501)
